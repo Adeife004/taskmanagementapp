@@ -1,9 +1,4 @@
 # .github/workflows/task-reminders.yml
-# Place this file at: .github/workflows/task-reminders.yml
-#
-# This workflow runs 4 scheduled jobs daily and sends push notifications
-# to users based on their task due dates — no Firebase Blaze plan needed.
-
 name: Task Reminder Notifications
 
 on:
@@ -29,12 +24,10 @@ jobs:
       - name: Send due-today reminders
         run: node scripts/reminders.js due-today
         env:
-          FIREBASE_PROJECT_ID:    ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_CLIENT_EMAIL:  ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY:   ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          VAPID_PUBLIC_KEY:       ${{ secrets.VAPID_PUBLIC_KEY }}
-          VAPID_PRIVATE_KEY:      ${{ secrets.VAPID_PRIVATE_KEY }}
-          VAPID_EMAIL:            ${{ secrets.VAPID_EMAIL }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PUBLIC_KEY:         ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY:        ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_EMAIL:              ${{ secrets.VAPID_EMAIL }}
 
   # ── 2. Due Tomorrow ───────────────────────────────────────────────────────────
   remind-due-tomorrow:
@@ -50,12 +43,10 @@ jobs:
       - name: Send due-tomorrow reminders
         run: node scripts/reminders.js due-tomorrow
         env:
-          FIREBASE_PROJECT_ID:    ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_CLIENT_EMAIL:  ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY:   ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          VAPID_PUBLIC_KEY:       ${{ secrets.VAPID_PUBLIC_KEY }}
-          VAPID_PRIVATE_KEY:      ${{ secrets.VAPID_PRIVATE_KEY }}
-          VAPID_EMAIL:            ${{ secrets.VAPID_EMAIL }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PUBLIC_KEY:         ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY:        ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_EMAIL:              ${{ secrets.VAPID_EMAIL }}
 
   # ── 3. Overdue ────────────────────────────────────────────────────────────────
   remind-overdue:
@@ -71,12 +62,10 @@ jobs:
       - name: Send overdue reminders
         run: node scripts/reminders.js overdue
         env:
-          FIREBASE_PROJECT_ID:    ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_CLIENT_EMAIL:  ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY:   ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          VAPID_PUBLIC_KEY:       ${{ secrets.VAPID_PUBLIC_KEY }}
-          VAPID_PRIVATE_KEY:      ${{ secrets.VAPID_PRIVATE_KEY }}
-          VAPID_EMAIL:            ${{ secrets.VAPID_EMAIL }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PUBLIC_KEY:         ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY:        ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_EMAIL:              ${{ secrets.VAPID_EMAIL }}
 
   # ── 4. Evening / Custom ───────────────────────────────────────────────────────
   remind-custom:
@@ -92,9 +81,7 @@ jobs:
       - name: Send evening reminders
         run: node scripts/reminders.js custom
         env:
-          FIREBASE_PROJECT_ID:    ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_CLIENT_EMAIL:  ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY:   ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          VAPID_PUBLIC_KEY:       ${{ secrets.VAPID_PUBLIC_KEY }}
-          VAPID_PRIVATE_KEY:      ${{ secrets.VAPID_PRIVATE_KEY }}
-          VAPID_EMAIL:            ${{ secrets.VAPID_EMAIL }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VAPID_PUBLIC_KEY:         ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY:        ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_EMAIL:              ${{ secrets.VAPID_EMAIL }}

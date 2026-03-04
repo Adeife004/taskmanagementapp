@@ -2,20 +2,14 @@
 // Queries Firestore for tasks and sends Web Push notifications.
 // Run via: node scripts/reminders.js [due-today|due-tomorrow|overdue|custom]
 
-const admin    = require('firebase-admin')
-const webpush  = require('web-push')
+const admin   = require('firebase-admin')
+const webpush = require('web-push')
 
-const rawKey = process.env.FIREBASE_PRIVATE_KEY || ''
-const privateKey = rawKey.includes('\\n')
-  ? rawKey.replace(/\\n/g, '\n')
-  : rawKey
+// Parse entire service account JSON from secret
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
 
 admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId:   process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey,
-  }),
+  credential: admin.credential.cert(serviceAccount),
 })
 
 const db = admin.firestore()
