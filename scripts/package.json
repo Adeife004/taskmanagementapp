@@ -1,0 +1,16 @@
+{
+  "name": "task-reminders-scripts",
+  "version": "1.0.0",
+  "description": "Scheduled push notification scripts for Task Management App",
+  "main": "reminders.js",
+  "scripts": {
+    "due-today":    "node reminders.js due-today",
+    "due-tomorrow": "node reminders.js due-tomorrow",
+    "overdue":      "node reminders.js overdue",
+    "custom":       "node reminders.js custom"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "web-push":       "^3.6.7"
+  }
+}
