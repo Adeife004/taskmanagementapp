@@ -5,8 +5,21 @@
 const admin   = require('firebase-admin')
 const webpush = require('web-push')
 
-// Parse entire service account JSON from secret
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+// Debug: check what we're receiving
+const raw = process.env.FIREBASE_SERVICE_ACCOUNT || ''
+console.log('[Debug] Secret length:', raw.length)
+console.log('[Debug] First 50 chars:', raw.substring(0, 50))
+console.log('[Debug] Last 20 chars:', raw.substring(raw.length - 20))
+
+let serviceAccount
+try {
+  serviceAccount = JSON.parse(raw)
+} catch (err) {
+  console.error('[Debug] JSON parse failed:', err.message)
+  process.exit(1)
+}
+
+console.log('[Debug] Parsed keys:', Object.keys(serviceAccount))
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
